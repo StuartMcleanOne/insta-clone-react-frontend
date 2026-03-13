@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { api } from "~/services/api";
+import api from "~/services/api";
 import { postsSchema, type Post } from "~/schemas/post.schema";
 import { PostCard } from "~/components/PostCard";
 
