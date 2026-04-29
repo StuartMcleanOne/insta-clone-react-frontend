@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const reelSchema = z.object({
   id: z.number(),

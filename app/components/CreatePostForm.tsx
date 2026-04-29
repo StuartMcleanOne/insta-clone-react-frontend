@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { z } from "zod";
-import { createPostSchema } from "../schemas/post.schema";
-import api from "../services/api";
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { z } from 'zod';
+import { createPostSchema } from '../schemas/post.schema';
+import api from '../services/api';
 
 export function CreatePostForm() {
   const navigate = useNavigate();
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -15,14 +15,12 @@ export function CreatePostForm() {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
     setImage(file);
-    // ✅ Creates a temporary local URL so you can preview the image instantly
     setPreview(file ? URL.createObjectURL(file) : null);
   };
 
   const handleSubmit = async () => {
     setError(null);
 
-    // ✅ Validate with Zod before touching the network
     try {
       createPostSchema.parse({ caption, image });
     } catch (err) {
@@ -32,19 +30,18 @@ export function CreatePostForm() {
       }
     }
 
-    // ✅ FormData is how browsers send files over HTTP
     const formData = new FormData();
-    formData.append("caption", caption);
-    formData.append("image", image!);
+    formData.append('caption', caption);
+    formData.append('image', image!);
 
     try {
       setLoading(true);
-      await api.post("/posts", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      await api.post('/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
-      navigate("/profile");
+      navigate('/profile');
     } catch {
-      setError("Failed to create post. Please try again.");
+      setError('Failed to create post. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -97,7 +94,7 @@ export function CreatePostForm() {
         className="w-full bg-blue-500 hover:bg-blue-600 disabled:opacity-50
                    text-white font-semibold py-2 rounded-lg transition-colors"
       >
-        {loading ? "Sharing..." : "Share"}
+        {loading ? 'Sharing...' : 'Share'}
       </button>
     </div>
   );

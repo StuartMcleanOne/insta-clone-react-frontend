@@ -1,8 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-// We define the base URL of our backend API.
 const api = axios.create({
-  baseURL: "http://localhost:3000", // Your Fastify backend address
+  baseURL: 'http://localhost:3000',
 });
 
-export { api };export default api;
+export default api;

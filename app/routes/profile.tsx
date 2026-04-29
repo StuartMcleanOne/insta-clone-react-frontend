@@ -1,40 +1,24 @@
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from 'react-router';
 
 export default function ProfileLayout() {
-  const activeLinkStyle = {
-    borderBottom: "2px solid black",
-    fontWeight: "bold",
-  };
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `flex-1 text-center p-4 text-sm ${
+      isActive ? 'border-b-2 border-black font-semibold' : 'text-gray-500'
+    }`;
 
   return (
     <div>
-      <div className='flex justify-center items-center border-b mb-4'>
-        <NavLink
-          to='/profile/posts/grid'
-          className='flex-1 text-center p-4'
-          style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}
-        >
+      <div className="flex justify-center items-center">
+        <NavLink to="/profile/posts/grid" className={navLinkClass}>
           Posts
         </NavLink>
-        <NavLink
-          to='/profile/reels/grid'
-          className='flex-1 text-center p-4'
-          style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}
-        >
+        <NavLink to="/profile/reels/grid" className={navLinkClass}>
           Reels
         </NavLink>
-        <NavLink
-          to='/profile/tagged/grid'
-          className='flex-1 text-center p-4'
-          style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}
-        >
+        <NavLink to="/profile/tagged/grid" className={navLinkClass}>
           Tagged
         </NavLink>
-        <NavLink
-          to='/profile/highlights'
-          className='flex-1 text-center p-4'
-          style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}
-        >
+        <NavLink to="/profile/highlights" className={navLinkClass}>
           Highlights
         </NavLink>
       </div>
